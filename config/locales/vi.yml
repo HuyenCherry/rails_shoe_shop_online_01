@@ -104,7 +104,14 @@ vi:
   upload: "Upload"
   search: "Tìm kiếm"
   result: "Result"
-
+  continue: "Tiếp tục mua"
+  checkout: "Đặt hàng"
+  view_cart: "Xem giỏ hàng"
+  item: "Sản phẩm"
+  name_shoe: "Tên sản phẩm"
+  quantity: "Số lượng"
+  shipping: "Phí giao hàng"
+  out_of_stock: "SẢN PHẦM ĐANG HẾT HÀNG"
   time:
     formats:
       default: "Ngày %d/%m/%Y %H:%M:%S %z"

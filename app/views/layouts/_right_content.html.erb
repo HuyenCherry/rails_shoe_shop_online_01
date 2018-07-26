@@ -8,6 +8,11 @@
       <span class="title_icon"><%= image_tag "cart.gif", alt: "" %></span>
       <%= t "my_cart" %>
     </div>
+    <% if logged_in? %> (<%= 
+      current_user.cart.cart_items.pluck(:shoe_id).size
+      %> items)
+    <% end %>
+    <%= link_to t("view_cart"), view_cart_path, class: "btn btn-link" %>
   </div>
   <div class="title">
     <span class="title_icon"><%= image_tag "bullet3.gif", alt: "" %></span>

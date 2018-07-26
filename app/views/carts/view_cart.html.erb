@@ -1,45 +1,87 @@
 <% provide :title, t(".cart") %>
-    <div class="left_content">
-      <div class="title"><span class="title_icon"><%= image_tag "bullet1.gif", alt: "" %></span>My cart</div>
-      <div class="feat_prod_box_details">
-        <table class="cart_table">
-          <tr class="cart_title">
-            <td>Item pic</td>
-            <td>Product name</td>
-            <td>Unit price</td>
-            <td>Qty</td>
-            <td>Total</td>
-          </tr>
-          <tr>
-            <td><a href="#"><%= image_tag "cart_thumb.gif", alt: "", class: "cart_thumb", border: "0" %></a></td>
-            <td>Gift flowers</td>
-            <td>100$</td>
-            <td>1</td>
-            <td>100$</td>
-          </tr>
-          <tr>
-            <td><a href="#"><%= image_tag "cart_thumb.gif", alt: "", class: "cart_thumb", border: "0" %></a></td>
-            <td>Gift flowers</td>
-            <td>100$</td>
-            <td>1</td>
-            <td>100$</td>
-          </tr>
-          <tr>
-            <td><a href="#"><%= image_tag "cart_thumb.gif", alt: "", class: "cart_thumb", border: "0" %></a></td>
-            <td>Gift flowers</td>
-            <td>100$</td>
-            <td>1</td>
-            <td>100$</td>
-          </tr>
-          <tr>
-            <td colspan="4" class="cart_total"><span class="red">TOTAL SHIPPING:</span></td>
-            <td> 250$</td>
-          </tr>
-          <tr>
-            <td colspan="4" class="cart_total"><span class="red">TOTAL:</span></td>
-            <td> 325$</td>
-          </tr>
-        </table>
-        <a href="#" class="continue">&lt; continue</a> <a href="#" class="checkout">checkout &gt;</a> </div>
-      <div class="clear"></div>
+<div class="left_content">
+  <div class="title"><span class="title_icon"><%= image_tag "bullet1.gif", alt: "" %></span>My cart</div>
+  <div class="feat_prod_box_details">
+    <table class="cart_table">
+      <tr class="cart_title">
+        <td><%= t "item" %></td>
+        <td><%= t "name_shoe" %></td>
+        <td><%= t "price" %></td>
+        <td><%= t "quantity" %></td>
+        <td><%= t "total" %></td>
+      </tr>
+      <% total = 0
+        price_shoes = 0
+      %>
+      <% @items.each do |item| %>
+        <% shoe = Shoe.find_by id: item.shoe_id %>
+        <tr>
+          <td style="visibility:hidden">
+            <%=
+              if shoe.discount
+                price_shoes = shoe.price * item.quantity - shoe.discount.percent * 0.01  * shoe.price
+              else
+                price_shoes = shoe.price * item.quantity
+              end
+              total = total + price_shoes
+            %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="new_prod_bg">
+              <%= link_to image_tag(shoe.img_url, alt: "", class: "thumb",
+              border: "0"), shoe %>
+              <span class="new_icon">
+                <%= 
+                if shoe.discount
+                  shoe.discount.percent
+                end %>
+              </span>
+            </div>
+          </td>
+          <td>
+            <div class="new_prod_box">
+              <div class="prod_title">
+                <%= link_to shoe.name, shoe %>
+              </div>
+              <div class="col-xs-4">
+                <%= link_to t("delete"), shoe, method: :delete,
+                  data: { confirm: "Are you sure?" },
+                  remote: :true, class: "destroy-product" %>
+              </div>
+            </div>
+          </td>
+          <td>
+            <%= shoe.price %>
+          </td>
+          <td>
+            <%= item.quantity %>
+          </td>
+          <td>
+            <%= price_shoes %>$
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="4" class="cart_total">
+        <span class="red">
+          <%= t "shipping" %>
+        </span></td>
+        <td> 25$ </td>
+      </tr>
+      <tr>
+        <td colspan="4" class="cart_total">
+        <span class="red">
+          <%= t "total" %>
+        </span></td>
+        <td>
+          <%= total + 25 %>$
+        </td>
+      </tr>
+    </table>
+    <%= link_to t("continue"), root_path, class:"continue" %>
+    <%= link_to t("checkout"), root_path, class:"checkout"%>
     </div>
+  <div class="clear"></div>
+</div>

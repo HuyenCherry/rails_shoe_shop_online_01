@@ -24,10 +24,24 @@
           <strong><%= t "price" %></strong>
           <span class="red"><%= @shoe.price %> $</span>
         </div>
+
         <div class="clear"></div>
       </div>
       <div class="box_bottom"></div>
     </div>
+
+    <div class="col-xs-4">
+    <%= form_for :shoe, url: cart_path, method: :patch do |f| %>
+        <div class="input-group">
+          <%= f.number_field :quantity, value: 1, class: "form-control", min: 1 %>
+          <div class="input-group-btn">
+            <%= f.hidden_field :shoe_id, value: @shoe.id %>
+            <%= f.submit "Add to Cart", class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
     <div class="clear"></div>
   </div>
 

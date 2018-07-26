@@ -5,7 +5,7 @@ class ShoesController < ApplicationController
 
   def show
     @shoe = Shoe.find_by id: params[:id]
-
+    
     if @shoe
       @related = Shoe.limit(Settings.product_new).related @shoe.category
       return
