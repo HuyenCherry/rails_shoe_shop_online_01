@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
   before_action :logged_in_user
 
-  def view_cart
+  def index
     @items = current_user.cart ? current_user.cart.cart_items : CartItem.none
   end
 
@@ -24,15 +24,5 @@ class CartsController < ApplicationController
       flash[:danger] = t "out_of_stock"
     end
     redirect_to root_path
-  end
-
-  def destroy
-    @shoe.destroy
-    respond_to do |format|
-      format.html { redirect_to view_cart_path,
-        notice: "Product was successfully destroyed." }
-      format.json { head :no_content }
-      format.js { render layout: false }
-    end
   end
 end

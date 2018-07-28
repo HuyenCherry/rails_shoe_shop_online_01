@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     get "/about", to: "static_pages#about"
     get "/contact", to: "static_pages#contact"
     get "/detail", to: "static_pages#detail"
-    get "/view_cart", to:"carts#view_cart"
     get "/signup", to: "users#new"
     post "/signup", to: "users#create"
     get "/login", to: "sessions#new"
@@ -18,6 +17,9 @@ Rails.application.routes.draw do
     resources :shoes, only: [:index, :show]
     resources :categories, only: [:index, :show]
     resources :carts
+    resources :cart_items
+    resources :orders
+    resources :bills
     resources :order_items
     namespace :admin do
       resources :users

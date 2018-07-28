@@ -110,6 +110,16 @@ en:
   quantity: "Quantity"
   shipping: "Shipping"
   out_of_stock: "OUT OF STOCK. PLEASE TRY AGAIN WITH OTHERS PRODUCT"
+  delete_item: "Product was successfully destroyed."
+  select: "Select"
+  order: "Order Now"
+  infor: "Contact Information"
+  infor_product: "Product Information"
+  payment_type: "Payment Type"
+  card: "Card"
+  in_person: "In person"
+  order_success: "Order successful, Continue shopping!"
+  add_success: "Add shoe successful"
   time:
     formats:
       default: "%a, %d %b %Y %H:%M:%S %z"

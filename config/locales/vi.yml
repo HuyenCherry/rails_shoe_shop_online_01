@@ -112,6 +112,16 @@ vi:
   quantity: "Số lượng"
   shipping: "Phí giao hàng"
   out_of_stock: "SẢN PHẦM ĐANG HẾT HÀNG"
+  delete_item: "Xóa sản phẩm thành công"
+  select: "Lựa chọn"
+  order: "Tiến hành thanh toán"
+  infor: "Thông tin liên lạc"
+  infor_product: "Thông tin sản phẩm"
+  payment_type: "Hình thức thanh toán"
+  card: "Thẻ tín dụng"
+  in_person: "Trực tiếp"
+  order_success: "Đặt hàng thành công, Tiếp tục mua sắm!"
+  add_success: "Thêm thành công"
   time:
     formats:
       default: "Ngày %d/%m/%Y %H:%M:%S %z"

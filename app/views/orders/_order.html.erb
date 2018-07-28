@@ -1,0 +1,34 @@
+<%= form_for @user, url: bills_path, method: :post do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div class="form_row">
+    <%= f.label :name, t("name"), class: "contact" %>
+    <%= f.text_field :name, class: "contact_input" %>
+  </div>
+
+  <div class="form_row">
+    <%= f.label :email, class: "contact" %>
+    <%= f.email_field :email, class: "contact_input" %>
+  </div>
+
+  <div class="form_row">
+    <%= f.label :phone, t("phone"), class: "contact" %>
+    <%= f.text_field :phone, class: "contact_input" %>
+  </div>
+
+  <div class="form_row">
+    <%= f.label :address, t("address"), class: "contact" %>
+    <%= f.text_field :address, class: "contact_input" %>
+  </div>
+
+  <div class="form_row">
+    <%= f.radio_button :payment_type, t("in_person"), :checked => false,
+      class: "contact_input" %> <%= t "in_person" %>
+    <%= f.label :payment_type, t("payment_type"), class: "contact" %>
+    <%= f.radio_button :payment_type, t("card"), :checked => true,
+      class: "contact_input" %> <%= t "card" %>
+  </div>
+  
+  <div class="form_row">
+    <%= f.submit t("order"), class: "checkout" %>
+  </div>
+<% end %>

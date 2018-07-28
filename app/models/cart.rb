@@ -4,13 +4,15 @@ class Cart < ApplicationRecord
   has_many :orders
   has_many :shoes, through: :cart_items
 
-  def percent
-    if shoe.discount
-      price_shoes = shoe.price * item.quantity - 
-        shoe.discount.percent * 0.01  * shoe.price
-    else
-      price_shoes = shoe.price * item.quantity
+  def total_price items
+    total = 0
+    items.each do |item|
+      total += item.total_price item
     end
-    total = total + price_shoes
+    total
+  end
+
+  def size
+    cart_items.count
   end
 end
