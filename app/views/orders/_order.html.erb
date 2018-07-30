@@ -21,10 +21,10 @@
   </div>
 
   <div class="form_row">
-    <%= f.radio_button :payment_type, t("in_person"), :checked => false,
+    <%= f.radio_button :payment_type, t("in_person"), :checked => true,
       class: "contact_input" %> <%= t "in_person" %>
     <%= f.label :payment_type, t("payment_type"), class: "contact" %>
-    <%= f.radio_button :payment_type, t("card"), :checked => true,
+    <%= f.radio_button :payment_type, t("card"), :checked => false,
       class: "contact_input" %> <%= t "card" %>
   </div>
   

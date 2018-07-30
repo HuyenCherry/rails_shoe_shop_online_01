@@ -2,26 +2,18 @@ class CartItemsController < ApplicationController
   def create; end
 
   def update
-    byebug
     notice = t "add_success"
     cart_item = CartItem.find_by id: params[:id]
     @shoe = cart_item.shoe
-    if params[:item][:quantity].to_i <= @shoe.quantity
-      cart_item.update quantity:
-        (cart_item.quantity + params[:item][:quantity].to_i)
-      @shoe.update quantity: (@shoe.quantity - params[:item][:quantity].to_i)
+    count = cart_item.quantity
+    if params[:cart_item][:quantity].to_i <= (@shoe.quantity + count)
+      cart_item.update quantity: params[:cart_item][:quantity].to_i
+      @shoe.update quantity:
+        (@shoe.quantity + count - params[:cart_item][:quantity].to_i)
     else
       notice = t "out_of_stock"
     end
-
-    respond_to do |format|
-      format.html do
-        redirect_to carts_url,
-          notice: notice
-      end
-      format.json{head :no_content}
-      format.js{render layout: false}
-    end
+    respond_to js
   end
 
   def destroy

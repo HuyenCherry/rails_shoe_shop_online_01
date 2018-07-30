@@ -2,3 +2,5 @@ jQuery(".destroy-product").bind("ajax:success", function() {
    jQuery(this).closest("tr").fadeOut();
 });
 jQuery('#cart-size').html('<%= current_user.cart.size %>');
+
+jQuery('.alert').html('Success');
